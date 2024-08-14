@@ -1,0 +1,27 @@
+<div class="view-content">
+    <div class="create-task-card">
+        <h3>Digite a tarefa que você deseja salvar</h3>
+        <input type="text" placeholder="Ex: Limpar a casa"  [(ngModel)]="taskName">
+        <button (click)="criarTarefa()">Salvar tarefa</button>
+    </div>
+</div>
+
+
+<div class="view-tasks-list">
+    <h3 *ngIf="tarefas.length < 0">Nenhuma tarefa salva</h3>
+    <div class="list-view" *ngIf="tarefas.length >= 0">
+        <div *ngFor="let tarefas of tarefas" class="view-tasks">
+            <div class="task-div">
+                <h2 *ngIf="tarefas.completed"  style="text-decoration: line-through;">{{tarefas.name}}</h2>
+                <h2 *ngIf="!tarefas.completed">{{tarefas.name}}</h2>
+            </div>
+            <div class="button-check" (click)="completarTarefa(tarefas.taskID)">
+                <i *ngIf="!tarefas.completed" class="fa-solid fa-check"></i>
+                <i *ngIf="tarefas.completed" class="fa-solid fa-x"></i>
+            </div>
+            <div class="button-remove" (click)="deletarTarefa(tarefas.taskID)">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+        </div>
+    </div>
+</div>
